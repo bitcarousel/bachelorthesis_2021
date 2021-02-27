@@ -1,0 +1,660 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Arial-BoldMT;\f2\fnil\fcharset0 Monaco;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 Menlo-Bold;\f5\fswiss\fcharset0 Helvetica-Bold;
+\f6\fnil\fcharset0 HelveticaNeue;\f7\fnil\fcharset0 HelveticaNeue-Bold;}
+{\colortbl;\red255\green255\blue255;\red24\green25\blue27;\red255\green255\blue255;\red242\green242\blue242;
+\red0\green0\blue0;\red0\green0\blue0;\red251\green2\blue7;\red255\green255\blue255;\red33\green255\blue6;
+\red27\green31\blue34;\red253\green128\blue8;\red33\green255\blue6;\red255\green255\blue10;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\cssrgb\c12549\c12941\c14118;\cssrgb\c100000\c100000\c100000;\csgray\c95825;
+\csgray\c0\c97994;\cssrgb\c0\c0\c0;\cssrgb\c100000\c14913\c0;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c97680\c0;
+\cssrgb\c14118\c16078\c18039;\cssrgb\c100000\c57637\c0;\cssrgb\c0\c97680\c0;\cssrgb\c99942\c98555\c0;\csgray\c0\c0;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17860\viewh14660\viewkind1
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs96 \cf0 Handbuch
+\fs24 \
+\
+Create EC2 Instance 
+\f1\b\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+g4dn.2xlarge
+\f0\b0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+- Use RED HAT as Image\
+- Switch to Root\
+sudo su\
+- Install Python3 by\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 sudo yum install python37\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+- Install pip\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 curl -O https://bootstrap.pypa.io/get-pip.py\
+python3 get-pip.py\
+export PATH=/usr/local/bin:$PATH\
+pip --version
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+-- Install Torch\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pip install torch torchvision --no-cache-dir
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+- Install libsnd\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 yum install libsndfile\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 - Install Pyannote.Audio\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pip install pyannote.audio==1.1.1\
+pyannote-audio --version
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+- Upload Data\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 cd Desktop\
+chmod 400 FFHS.pem
+\f3\fs26 \cf6 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+scp -i FFHS.pem -r /../Documents/FFHS/BT/99_DATASETs/ ec2-user@ec2..server....:/copy/to/folder\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f4\b\fs26 \cf6 \expnd0\expndtw0\kerning0
+Jupyter Notebook on Server\
+Server
+\f3\b0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 [ec2-user@ip-10-255-255-134 98_NOTEBOOKS]$ \
+jupyter notebook --certfile=../../ssl/mycert.pem --keyfile ../../ssl/mykey.key
+\f3\fs26 \cf6 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f4\b \cf6 Local Client
+\f3\b0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0  ssh -i FFHS.pem -N -f -L 8888:localhost:8888 ec2-user@ec2-18-185-47-245.eu-central-1.compute.amazonaws.com\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf6 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\sl320\partightenfactor0
+\cf6 Use Browser safari with:\
+https://localhost:8888 \
+Pass\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f4\b \cf7 XX 23
+\f3\b0 \cf6 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 sha1:e593d8b47b60:c2523153edfdaf0c031ca981d22a0c32c6d87059
+\f3\fs26 \cf6 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\sl320\partightenfactor0
+\cf6 \
+\
+Klicke in die ERROR WEBSITE und schreibe 
+\f4\b \cf7 thisisunsafe
+\f3\b0 \cf6 \
+\
+\
+TENSORBOARD\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0  ssh -i FFHS.pem -N -f -L 600x:localhost:600x ec2-user@ec2-18-185-47-245.eu-central-1.compute.amazonaws.com
+\f3\fs26 \cf6 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\sl320\partightenfactor0
+\cf6 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 /home/ec2-user/BT/99_DATASETs/TUTORIAL/\
+\
+AMI MUSAN   amicorpus   musan
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs36 \cf0 Die Vergleiche\
+\cb8 1. ArchiMob mit AMI Model.
+\fs24 \cb1 \
+\
+Unter diesem Verzeichnis \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 /home/ec2-user/BT/97_PYANNOTE/pyannote-audio
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Das \cf7 database.yml\cf0  anpassen mit ARCHIMOB\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Databases:\
+   ARM: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_DATA/\{uri\}.wav\
+   MUSAN: /home/ec2-usercd /BT/99_DATASETs/ARCHIMOB/MUSAN/\{uri\}.wav\
+\
+Protocols:\
+   ARM:\
+      SpeakerDiarization:\
+         ArchiMob:\
+           train:\
+              uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.train.lst\
+              annotation: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.train.rttm\
+              annotated: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.train.uem\
+           development:\
+              uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.development.lst\
+              annotation: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.development.rttm\
+              annotated: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.development.uem\
+           test:\
+              uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.test.lst\
+              annotation: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.test.rttm\
+              annotated: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/ARCHIMOB_META/Archimob.test.uem\
+   MUSAN:\
+      Collection:\
+         BackgroundNoise:\
+            uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/MUSAN/background_noise.txt\
+         Noise:\
+            uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/MUSAN/noise.txt\
+         Music:\
+            uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/MUSAN/music.txt\
+         Speech:\
+            uri: /home/ec2-user/BT/99_DATASETs/ARCHIMOB/MUSAN/speech.txt
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Danach muss ein Pretrained Model
+\f5\b  fine tuned
+\f0\b0  werden mit \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf7 \cb5 \CocoaLigature0 export\cf4  EXP_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb9 TRAIN 
+\f5\b SAD
+\f0\b0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b\fs28 \cf0 FINETUNE AMI SAD Model on Archimob TRAIN Dataset\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-audio sad train --pretrained=sad_ami --subset=train --to=30 --parallel=4 $\{EXP_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Tensorboard score\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+tensorboard --logdir=$\{EXP_DIR\}\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+
+\f0\fs24 Time
+\fs20 :
+\f3\fs27\fsmilli13600 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 Training: 100%|\uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 | 30/30 [43:29:43<00:00, 5219.46s/epoch]
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb9 VALIDATION 
+\f5\b SAD
+\f0\b0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b\fs28 \cf0 Validate FINETUNE AMI SAD Model on Archimob \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+export TRN_DIR=$\{EXP_DIR\}/sad/train/ARM.SpeakerDiarization.ArchiMob.train\
+pyannote-audio sad validate --subset=development --from=10 --to=30\
+--every=2 $\{TRN_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+Tensorboard score\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+tensorboard --logdir=$\{EXP_DIR\}
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+BEST EPOCHE 
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Epoch #\cf11 10\cf4  = 99.9999% (best)
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf6 \cb9 APPLY 
+\f5\b SAD
+\f0\b0 \cf0 \cb1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 export VAL_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/sad/train/ARM.SpeakerDiarization.ArchiMob.train//validate_detection_fscore/ARM.SpeakerDiarization.ArchiMob.development
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+NOTE use development\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-audio sad apply --subset=test $\{VAL_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Test: 2file [00:22, 11.42s/file]
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 ----------------------------------------------------------------------------------------------------------------\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb9 TRAIN 
+\f5\b SCD
+\f0\b0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b\fs28 \cf0 FINETUNE AMI SCD Model on Archimob TRAIN Dataset\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-audio scd train --pretrained=scd_ami --subset=train --to=150 --parallel=4 $\{EXP_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Tensorboard score\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+tensorboard --logdir=$\{EXP_DIR\}
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+Time:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Training: 100%|\uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 | 30/30 [41:23:40<00:00, 4967.34s/epoch]\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb9 VALIDATION 
+\f5\b SCD
+\f0\b0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b\fs28 \cf0 Validate FINETUNE AMI SCD Model on Archimob \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+export TRN_DIR=$\{EXP_DIR\}/scd/train/ARM.SpeakerDiarization.ArchiMob.train\
+pyannote-audio scd validate --subset=development --from=10 --to=30 \
+every=2 $\{TRN_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+Tensorboard score\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+tensorboard --logdir=$\{EXP_DIR\}
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+BEST EPOCHE: 
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Epoch #\cf11 28\cf4  = 78.0068% (best)
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf6 \cb9 APPLY 
+\f5\b SCD
+\f0\b0 \cf0 \cb1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 export VAL_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/scd/train/ARM.SpeakerDiarization.ArchiMob.train/validate_segmentation_fscore/ARM.SpeakerDiarization.ArchiMob.development
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b \cf0 NOTE use development
+\f0\b0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-audio scd apply --subset=test $\{VAL_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Test: 2file [00:07,  3.58s/file]
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 ----------------------------------------------------------------------------------------------------------------\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb9 TRAIN 
+\f5\b EMB
+\f0\b0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b\fs28 \cf0 FINETUNE AMI EMB Model on Archimob TRAIN Dataset\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-audio emb train --pretrained=emb_ami --subset=train --to=150 --parallel=4 $\{EXP_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Tensorboard score\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+tensorboard --logdir=$\{EXP_DIR\}
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+Time\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Training: 100%|\uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 | 30/30 [21:24:53<00:00, 2569.77s/epoch]
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb9 VALIDATION 
+\f5\b EMB
+\f0\b0 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b\fs28 \cf0 Validate FINETUNE AMI EMB Model on Archimob \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b0\fs24 \cf0 \
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+export TRN_DIR=$\{EXP_DIR\}/emb/train/ARM.SpeakerDiarization.ArchiMob.train\
+pyannote-audio emb validate --subset=development --from=0 --to=30 \
+every=10 $\{TRN_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+Tensorboard score\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+tensorboard --logdir=$\{EXP_DIR\}
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 BEST EPOCHE: 
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Epoch #\cf11 16\cf4  = xxxx (best)
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf6 \cb9 APPLY 
+\f5\b EMB
+\f0\b0 \cf0 \cb1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 export VAL_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/emb/train/ARM.SpeakerDiarization.ArchiMob.train/validate_diarization_fscore/ARM.SpeakerDiarization.ArchiMob.development
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b \cf0 NOTE use developement 
+\f0\b0 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-audio emb apply --subset=test $\{VAL_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 Test: 2file [12:55, 387.57s/file]
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Nun wissen wir wie das Modell auf dem Training und Development Datensatz perfomed. Darum k\'f6nnen wir nun die ganze Pipeline Trainieren. \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f5\b \cf0 \cb12 PIPELINE SPEAKER DIARIZATION
+\f0\b0 \cb1 \
+\
+Dazu muss das config.yml im speaker_diarization Order angepasst werden. \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 cat /home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/pipelines/speaker_diarization/config.yml
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+das config.yml in speaker_diarization wie folgt anpassen:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 [ec2-user@ip-10-255-255-134 speaker_diarization]$ cat config.yml \
+pipeline:\
+   name: pyannote.audio.pipeline.speaker_diarization.SpeakerDiarization\
+   params:\
+      sad_scores: /home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/sad/train/ARM.SpeakerDiarization.ArchiMob.train/validate_detection_fscore/ARM.SpeakerDiarization.ArchiMob.development/apply/0010\
+      scd_scores: /home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/scd/train/ARM.SpeakerDiarization.ArchiMob.train/validate_segmentation_fscore/ARM.SpeakerDiarization.ArchiMob.development/apply/0028\
+      embedding: /home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/emb/train/ARM.SpeakerDiarization.ArchiMob.train/validate_diarization_fscore/ARM.SpeakerDiarization.ArchiMob.development/apply/0016\
+      evaluation_only: True\
+      method: affinity_propagation\
+\
+freeze:\
+   speech_turn_segmentation:\
+      speech_activity_detection:\
+         min_duration_off: 0.6315121069334447\
+         min_duration_on: 0.0007366523493967721\
+         offset: 0.5727193137037349\
+         onset: 0.5842225805454029\
+         pad_offset: 0.0\
+         pad_onset: 0.0
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+Dann werden die folgenden Commands ausgef\'fchrt:\
+\
+NEUES EXP_DIR definieren:\
+\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf7 \cb6 \expnd0\expndtw0\kerning0
+export\cf3  EXP_DIR=\kerning1\expnd0\expndtw0 \CocoaLigature0 /home/ec2-user/BT/97_PYANNOTE/pyannote-audio/\expnd0\expndtw0\kerning0
+\CocoaLigature1 tutorials/pipelines/speaker_diarization
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+\
+Danach das Subset 
+\f5\b development
+\f0\b0  nochmals trainieren mit:\
+Da die eigentlichen Modelle schon mit dem Train Datensatz traniert wurden wird hier nur der Development benutzt um die Hyperparameter zu optimieren. \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \CocoaLigature0 pyannote-pipeline train --subset=development --iterations=30 $\{EXP_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\sl380\partightenfactor0
+\cf10 \
+time: 
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 Best trial: 10.4006%: : 100trial [4:02:29, 145.50s/trial]
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf10 \cb3 \expnd0\expndtw0\kerning0
+Das kreiert einige Files im TRN_DIR, Ordner including\'a0params.yml\'a0welches die (so far) optimalen parameter beinhaltet. 
+\f3\fs27\fsmilli13600 \
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf7 \cb6 export\cf3  TRN_DIR=/home/ec2-user/BT/99_DATASETs/ARCHIMOB/pipelines/speaker_diarization/train/ARM.SpeakerDiarization.ArchiMob.development\
+cat $\{TRN_DIR\}/params.yml
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 Dann wird der folgende Command auf den Test Datensatz ausgef\'fchrt\
+\
+\pard\pardeftab720\sl380\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+pyannote-pipeline apply --subset=\cf13 test\cf3  $\{TRN_DIR\} ARM.SpeakerDiarization.ArchiMob
+\f3\fs27\fsmilli13600 \cf10 \cb1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 Das ergibt dann Files unter\
+\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f2\fs20 \cf3 \cb6 \expnd0\expndtw0\kerning0
+\'a0$\{TRN_DIR\}/apply/latest
+\f6\fs32 \cf10 \cb3 \'a0subdirectory, inkludiert:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f3\fs27\fsmilli13600 \cf10 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\cf7 \expnd0\expndtw0\kerning0
+ARM.SpeakerDiarization.ArchiMob.test.rttm
+\f6\fs32 \cf10 \'a0that contains the actual output of the optimized pipeline\cb1 \
+\ls1\ilvl0
+\f3\fs27\fsmilli13600 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\cf7 \expnd0\expndtw0\kerning0
+ARM.SpeakerDiarization.ArchiMob.test.eval
+\f6\fs32 \cf10 \'a0that provides an evaluation of the result (more or less equivalent to what you would get by using\'a0
+\f3\fs27\fsmilli13600 pyannote.metrics
+\f6\fs32 \'a0command line tool).\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\partightenfactor0
+\ls1\ilvl1\cf10 \cb1 \kerning1\expnd0\expndtw0 {\listtext	
+\f7\b \uc0\u8259 	}
+\f6\b0 ink. der Anzahl erkannter Sprecher. \expnd0\expndtw0\kerning0
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\fs27\fsmilli13600 \cf10 \
+\
+TENSORBOARD\
+\
+SAD\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 export SAD_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/sad\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 tensorboard --logdir=$\{SAD_DIR\}
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf10 SCD\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 export SCD_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/scd
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf10 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 tensorboard --logdir=$\{SCD_DIR\}
+\f3\fs27\fsmilli13600 \cf10 \cb1 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf10 \
+EMB\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\fs20 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 export EMB_DIR=/home/ec2-user/BT/97_PYANNOTE/pyannote-audio/tutorials/finetune/emb\
+\
+tensorboard --logdir=$\{EMB_DIR\}\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf4 \cb14 \
+\
+
+\fs48 \cf6 SINGLE FILE TESTS\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\fs20 \cf4 \cb5 (base) Chrigis-MacBook-Pro:SINGLE_FILE chrigialbrecht$ \
+scp -i ../../../../../Desktop/FFHS.pem FA-CA.wav ec2-user@ec2-52-57-166-151.eu-central-1.compute.amazonaws.com:/home/ec2-user/BT/99_DATASETs/SINGLE_FILE\cb14 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf6 \
+}
